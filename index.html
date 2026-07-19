@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Alex Mercer | Researcher Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-color: #0f172a;
+            --accent-color: #2563eb;
+            --accent-light: #dbeafe;
+            --muted-text: #475569;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --border-color: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f172a;
+                --text-color: #f8fafc;
+                --accent-color: #3b82f6;
+                --accent-light: #1e3a8a;
+                --muted-text: #94a3b8;
+                --card-bg: rgba(30, 41, 59, 0.7);
+                --border-color: #334155;
+                --nav-bg: rgba(15, 23, 42, 0.8);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--muted-text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        section {
+            padding: 5rem 0;
+        }
+
+        #hero {
+            padding: 8rem 0 5rem 0;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--muted-text);
+            margin-bottom: 2rem;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+        }
+
+        .hero-img-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--card-bg);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 2.25rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        /* Advanced Dynamic Filter Tabs (Publications) */
+        .tab-container {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--muted-text);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--accent-color);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -9px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .pub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .pub-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(8px);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pub-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .pub-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            background-color: var(--accent-light);
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        .pub-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .pub-authors {
+            font-size: 0.95rem;
+            color: var(--muted-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .me {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .pub-venue {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--muted-text);
+        }
+
+        .pub-links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .pub-links a {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Timeline (Experience / Education) */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 20px;
+        }
+
+        .timeline-item {
+            padding: 0 0 3rem 50px;
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            left: 13px;
+            top: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-subtitle {
+            font-size: 0.95rem;
+            color: var(--muted-text);
+            margin-bottom: 0.75rem;
+            font-style: italic;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info i {
+            color: var(--accent-color);
+            width: 25px;
+            margin-right: 0.5rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            #hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-img-container { order: -1; }
+            .social-buttons { justify-content: center; }
+            .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .nav-links { display: none; } /* Add a mobile menu trigger if desired */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Header -->
+    <header>
+        <div class="container nav-container">
+            <nav>
+                <a href="#" class="logo">Alex Mercer</a>
+                <ul class="nav-links">
+                    <li><a href="#hero" class="nav-item">About</a></li>
+                    <li><a href="#publications" class="nav-item">Research</a></li>
+                    <li><a href="#experience" class="nav-item">Timeline</a></li>
+                    <li><a href="#contact" class="nav-item">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-text">
+                <p class="subtitle">Postdoctoral Researcher in AI & Ethics</p>
+                <h1>Decoding the future of Human-Computer Interaction.</h1>
+                <p>I am a computational social scientist studying how machine learning algorithms reshape societal norms. Currently researching at Stanford University, my work bridges the gap between deep learning and behavioral economics.</p>
+                
+                <div class="social-buttons">
+                    <a href="mailto:your.email@gmail.com" class="btn btn-primary"><i class="fa-regular fa-envelope"></i> Contact Me</a>
+                    <a href="#" class="btn btn-secondary"><i class="fa-solid fa-file-pdf"></i> Curriculum Vitae</a>
+                    <a href="https://scholar.google.com" target="_blank" class="btn btn-secondary"><i class="fa-graduation-cap fas"></i> Google Scholar</a>
+                    <a href="https://github.com/digitalct" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </div>
+            <div class="hero-img-container">
+                <!-- Replace with your actual picture URL later -->
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=500&auto=format&fit=crop" alt="Profile picture" class="hero-img">
+            </div>
+        </section>
+
+        <!-- Research & Publications Section -->
+        <section id="publications">
+            <h2 class="section-title">Selected Publications</h2>
+            
+            <!-- Filter Tabs -->
+            <div class="tab-container">
+                <button class="tab-btn active" onclick="filterPubs('all')">All</button>
+                <button class="tab-btn" onclick="filterPubs('journal')">Journals</button>
+                <button class="tab-btn" onclick="filterPubs('conference')">Conferences</button>
+                <button class="tab-btn" onclick="filterPubs('preprint')">Preprints</button>
+            </div>
+
+            <div class="pub-list">
+                <!-- Pub 1 -->
+                <div class="pub-card" data-type="journal">
+                    <div class="pub-tags">
+                        <span class="tag">Journal</span>
+                    </div>
+                    <h3 class="pub-title">Algorithmic Bias in Algorithmic Moderation: A Longitudinal Analysis</h3>
+                    <p class="pub-authors"><span class="me">Mercer, A.</span>, Smith, J., & Doe, R.</p>
+                    <p class="pub-venue">Nature Human Behaviour, 2025</p>
+                    <div class="pub-links">
+                        <a href="#"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="#"><i class="fa-solid fa-code"></i> Code</a>
+                        <a href="#"><i class="fa-solid fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+
+                <!-- Pub 2 -->
+                <div class="pub-card" data-type="conference">
+                    <div class="pub-tags">
+                        <span class="tag">Conference</span>
+                    </div>
+                    <h3 class="pub-title">Large Language Models as Simulators of Human Social Behavior</h3>
+                    <p class="pub-authors">Johnson, K., & <span class="me">Mercer, A.</span></p>
+                    <p class="pub-venue">Proceedings of CHI 2024 (Honorable Mention Award)</p>
+                    <div class="pub-links">
+                        <a href="#"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                        <a href="#"><i class="fa-solid fa-cubes"></i> Dataset</a>
+                        <a href="#"><i class="fa-solid fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+
+                <!-- Pub 3 -->
+                <div class="pub-card" data-type="preprint">
+                    <div class="pub-tags">
+                        <span class="tag">Preprint</span>
+                    </div>
+                    <h3 class="pub-title">Towards Standardized Metrics for Auditing Black-Box Recommendation Systems</h3>
+                    <p class="pub-authors"><span class="me">Mercer, A.</span></p>
+                    <p class="pub-venue">arXiv:2601.04321, 2026</p>
+                    <div class="pub-links">
+                        <a href="#"><i class="fa-solid fa-file-pdf"></i> arXiv</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Timeline Section -->
+        <section id="experience">
+            <h2 class="section-title">Academic Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2024 - Present</div>
+                    <div class="timeline-title">Postdoctoral Research Fellow</div>
+                    <div class="timeline-subtitle">Stanford University, Stanford Artificial Intelligence Lab</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2020 - 2024</div>
+                    <div class="timeline-title">Ph.D. in Computer Science</div>
+                    <div class="timeline-subtitle">Massachusetts Institute of Technology (MIT)</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2018 - 2020</div>
+                    <div class="timeline-title">Research Assistant</div>
+                    <div class="timeline-subtitle">Microsoft Research, New England Lab</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-grid">
+                <div>
+                    <p style="margin-bottom: 2rem; color: var(--muted-text);">I am always open to academic collaborations, speaking engagements, and consulting requests regarding algorithmic bias and socio-technical systems.</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Gates Computer Science Building, Stanford, CA</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-regular fa-envelope"></i>
+                            <a href="mailto:your.email@gmail.com">your.email@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <!-- Secure, No-JS contact fallback direction or standard instruction -->
+                    <p style="color: var(--muted-text);">The best way to reach me is via email. I usually respond within 48 hours. You can also trace my open-source code and developments on GitHub profile.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alex Mercer. Built elegantly on <a href="https://digitalct.github.io/" style="color: inherit;">digitalct.github.io</a>.</p>
+        </div>
+    </footer>
+
+    <!-- Advanced UI Interactions Javascript -->
+    <script>
+        // Dynamic Filter System for Publications
+        function filterPubs(type) {
+            // Update active tab button style
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter logic
+            const cards = document.querySelectorAll('.pub-card');
+            cards.forEach(card => {
+                if (type === 'all' || card.getAttribute('data-type') === type) {
+                    card.style.display = 'block';
+                    // Trigger a micro-fade-in effect
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.opacity = '1', 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Active Navigation Tracking on Scroll
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').includes(current)) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

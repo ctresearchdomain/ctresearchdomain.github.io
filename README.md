@@ -1,2 +1,0 @@
-# ctresearchdomain.github.io
-ctresearchpage
